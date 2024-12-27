@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #d32f2f;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+        }
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1.1em;
+        }
+        input[type="submit"] {
+            padding: 15px;
+            background-color: #d32f2f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #9a0007;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #b71c1c;
+            padding: 15px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 1.3em;
+            font-weight: 500;
+            transition: color 0.3s ease-in-out;
+        }
+        nav a:hover {
+            color: #ffcc00;
+        }
+        h2 {
+            color: #d32f2f;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .intro-text {
+            background-color: #fbe9e7;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .intro-text h3 {
+            color: #bf360c;
+        }
+        .intro-text p {
+            color: #4e342e;
+        }
+        footer {
+            text-align: center;
+            background-color: #d32f2f;
+            color: white;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Heart Disease Prediction Page</h1>
+        <h4>Monitor Your Heart Health</h4>
+    </header>
+    <nav>
+        <!-- Navigation links can go here -->
+    </nav>
+
+    <main>
+        <div class="intro-text">
+            <h3>Welcome to HeartCare!</h3>
+            <p>Stay ahead of heart health risks with our prediction tool. Early intervention can save lives. Fill in the parameters below for insights into your heart health.</p>
+        </div>
+
+        <h2>Input Your Health Parameters</h2>
+        <form action="{{url_for('heartdiseaseprediction')}}" method="POST">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" min="29" required>
+
+            <label for="sex">Sex (1 = Male, 0 = Female)</label>
+            <input type="number" id="sex" name="sex" min="0" max="1" required>
+
+            <label for="cp">Chest Pain Type (0–3)</label>
+            <input type="number" id="cp" name="cp" min="0" max="3" required>
+
+            <label for="trestbps">Resting Blood Pressure (mmHg)</label>
+            <input type="number" id="trestbps" name="trestbps" min="94" max="200" required>
+
+            <label for="chol">Cholesterol (mg/dL)</label>
+            <input type="number" id="chol" name="chol" min="126" max="564" required>
+
+            <label for="fbs">Fasting Blood Sugar > 120 mg/dL (1 = Yes, 0 = No)</label>
+            <input type="number" id="fbs" name="fbs" min="0" max="1" required>
+
+            <label for="restecg">Resting ECG Results (0–2)</label>
+            <input type="number" id="restecg" name="restecg" min="0" max="2" required>
+
+            <label for="thalach">Maximum Heart Rate Achieved</label>
+            <input type="number" id="thalach" name="thalach" min="71" max="202" required>
+
+            <label for="exang">Exercise-Induced Angina (1 = Yes, 0 = No)</label>
+            <input type="number" id="exang" name="exang" min="0" max="1" required>
+
+            <label for="oldpeak">ST Depression Induced by Exercise</label>
+            <input type="number" id="oldpeak" name="oldpeak" step="0.1" max="6.2" required>
+
+            <label for="slope">Slope of Peak Exercise ST Segment (0–2)</label>
+            <input type="number" id="slope" name="slope" min="0" max="2" required>
+
+            <label for="ca">Number of Major Vessels Colored by Fluoroscopy (0–4)</label>
+            <input type="number" id="ca" name="ca" min="0" max="4" required>
+
+            <label for="thal">Thalassemia (1 = Normal; 2 = Fixed Defect; 3 = Reversible Defect)</label>
+            <input type="number" id="thal" name="thal" min="1" max="3" required>
+
+            <input type="submit" value="PREDICT">
+        </form>
+
+        <p><strong>Note:</strong> All data provided is confidential and used solely for heart disease prediction. Accurate inputs ensure better insights into your health.</p>
+    </main>
+
+    <footer>
+        &copy;2025 Disease[Heart] Outbreak Prediction System. Created by <span>Abhishek C B</span>. All rights reserved.
+    </footer>
+
+</body>
+</html>

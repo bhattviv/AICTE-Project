@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parkinson's Disease Prediction</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #eaf7ff;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #13d102;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            text-transform: uppercase;
+        }
+        header h4 {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+        }
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1.1em;
+        }
+        input[type="submit"] {
+            padding: 15px;
+            background-color: #02d125;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #009f28;
+        }
+        .intro-text {
+            background-color: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .intro-text h3 {
+            color: #259b01;
+        }
+        .intro-text p {
+            color: #004d40;
+        }
+        footer {
+            text-align: center;
+            background-color: #d17402;
+            color: white;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Parkinson's Disease Prediction</h1>
+        <h4>Monitor Your Health with AI</h4>
+    </header>
+
+    <main>
+        <div class="intro-text">
+            <h3>Welcome to Parkinson's Care</h3>
+            <p>Stay ahead of health risks with our prediction tool. Enter the parameters below to analyze your health condition.</p>
+        </div>
+
+        <h2>Input Your Health Parameters</h2>
+        <form action="{{url_for('prankinsonsdiseaseprediction')}}" method="POST">
+            <!-- Input Fields -->
+            <label for="mdvp_fo">MDVP:Fo(Hz)</label>
+            <input type="number" id="mdvp_fo" name="mdvp_fo" min="88.33" max="260" step="0.01" required>
+            
+<label for="mdvp_fhi">MDVP:Fhi(Hz)</label>
+            <input type="number" id="mdvp_fhi" name="mdvp_fhi" step="0.01" min="102.145" max="592.03" required>
+
+            <label for="mdvp_flo">MDVP:Flo(Hz)</label>
+            <input type="number" id="mdvp_flo" name="mdvp_flo" step="0.01" min="65.47" max="239.17" required>
+
+            <label for="mdvp_jitter">MDVP:Jitter(%)</label>
+            <input type="number" id="mdvp_jitter" name="mdvp_jitter" step="0.0001" min="0.001680" max="0.033160"required>
+
+            <label for="mdvp_jitter_abs">MDVP:Jitter(Abs)</label>
+            <input type="number" id="mdvp_jitter_abs" name="mdvp_jitter_abs"  min="0.00007" max="0.000260" step="0.000260" required>
+
+            <label for="mdvp_rap">MDVP:RAP</label>
+            <input type="number" id="mdvp_rap" name="mdvp_rap" step="0.0001" min="0.000680" max="0.021440" required>
+
+            <label for="mdvp_ppq">MDVP:PPQ</label>
+            <input type="number" id="mdvp_ppq" name="mdvp_ppq" step="0.0001" min="0.000920" max="0.019580"required>
+
+            <label for="jitter_ddp">Jitter:DDP</label>
+            <input type="number" id="jitter_ddp" name="jitter_ddp" step="0.0001" min="0.002040" max="0.064330" required>
+
+            <label for="mdvp_shimmer">MDVP:Shimmer</label>
+            <input type="number" id="mdvp_shimmer" name="mdvp_shimmer" step="0.0001" min="0.009540" max="0.119080" required>
+
+            <label for="mdvp_shimmer_db">MDVP:Shimmer(dB)</label>
+            <input type="number" id="mdvp_shimmer_db" name="mdvp_shimmer_db" step="0.001" min="0.085000" max="1.302000" required>
+
+            <label for="shimmer_apq3">Shimmer:APQ3</label>
+            <input type="number" id="shimmer_apq3" name="shimmer_apq3" step="0.0001" required>
+
+            <label for="shimmer_apq5">Shimmer:APQ5</label>
+            <input type="number" id="shimmer_apq5" name="shimmer_apq5" step="0.0001" required>
+
+            <label for="mdvp_apq">MDVP:APQ</label>
+            <input type="number" id="mdvp_apq" name="mdvp_apq" step="0.0001" required>
+
+            <label for="shimmer_dda">Shimmer:DDA</label>
+            <input type="number" id="shimmer_dda" name="shimmer_dda" step="0.0001" min="0.013640" max="0.169420" required>
+
+            <label for="nhr">NHR</label>
+            <input type="number" id="nhr" name="nhr" step="0.1001" max="8.441000" min="0.314820" step="0.0001" required>
+            
+<label for="hnr">HNR</label>
+            <input type="number" id="hnr" name="hnr" step="0.01" min="0.000680" max="33.047" required>
+
+            <label for="rpde">RPDE</label>
+            <input type="number" id="rpde" name="rpde" step="0.0001" min="0.256570" max="0.685151" required>
+
+            <label for="dfa">DFA</label>
+            <input type="number" id="dfa" name="dfa" step="0.0001" min="0.574282" max="0.825288" required>
+
+            <label for="spread1">Spread1</label>
+            <input type="number" id="spread1" name="spread1" step="0.0001" min="-7.964684" max="-2.434031" required>
+
+            <label for="spread2">Spread2</label>
+            <input type="number" id="spread2" name="spread2" step="0.0001" min="0.006274" max="0.450493" required>
+
+            <label for="d2">D2</label>
+            <input type="number" id="d2" name="d2" step="0.0001" min="1.42" max="3.6711155" required>
+
+            <label for="ppe">PPE</label>
+            <input type="number" id="ppe" name="ppe" step="0.0001" min="0.044539" max="0.527367" required>
+
+            <input type="submit" value="PREDICT">
+        </form>
+
+        <p><strong>Note:</strong> All data provided is confidential and used solely for Parkinson's disease prediction. Accurate inputs ensure better insights into your health.</p>
+    </main>
+
+    <footer>
+        &copy; 2025 Disease[Prankinson's] Outbreak Prediction System. Created by <span>Abhishek C B</span>. All rights reserved.
+    </footer>
+
+</body>
+</html>
